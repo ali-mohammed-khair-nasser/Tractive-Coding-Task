@@ -7,7 +7,7 @@
 # To generate the token I use the command `surge token` in the terminal of the project.
 # ************************************************************************************************************************************* #
 
-name: Deploy to Live Preview
+name: Deploy to Live Preview (Surge.sh)
 
 on: 
   pull_request:

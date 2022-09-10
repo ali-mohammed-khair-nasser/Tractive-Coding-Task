@@ -1,0 +1,24 @@
+// ******************************************************************************************************* //
+// NOTE:
+// I am not using all of these breakpoints, but I added them to show you how I normally structure my work.
+// ******************************************************************************************************* //
+
+@mixin extra-large-screens {
+  @media (max-width: 1400px) { @content; }
+}
+
+@mixin large-screens {
+  @media (max-width: 1200px) { @content; }
+}
+
+@mixin medium-screens {
+  @media (max-width: 768px) { @content; }
+}
+
+@mixin small-screens {
+  @media (max-width: 576px) { @content; }
+}
+
+@mixin extra-small-screens {
+  @media (max-width: 340px) { @content; }
+}

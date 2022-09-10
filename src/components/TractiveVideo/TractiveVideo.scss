@@ -1,0 +1,79 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/generalClasses';
+@import 'assets/scss/breakpoints';
+
+.tractive-video {
+  filter: url(#round);
+  
+  .svg-musk {
+    visibility: hidden;
+    position: absolute;
+    @include square(0);
+  }
+  
+  .video-container {
+    display: block;
+    width: 900px;
+    aspect-ratio: 16 / 9;
+    clip-path: polygon(50% 0, 100% 2%, 100% 98%, 50% 100%, 0 98%, 0 2%);
+    position: relative;
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .video-controls {
+      display: block;
+      position: absolute;
+      bottom: 30px;
+      left: 20px;
+      z-index: 10;
+
+      .action-button {
+        @extend .centering;
+        @include square(40px);
+        border-radius: 50%;
+        background-color: rgba($color: $--color-gray, $alpha: .6);
+        border: none;
+        outline: none;
+        color: $--color-white;
+        cursor: pointer;
+        transition: $--transition;
+
+        svg { @include square(30px); }
+        .play-icon { padding-left: 4px; }
+        &:hover { transform: scale(1.2); }
+      }
+    }
+
+    .time-waves {
+      color: $--color-white;
+      position: absolute;
+      bottom: 22px;
+      right: 20px;
+      z-index: 10;
+      @extend .centering;
+
+      .current-time {
+        margin-right: 5px;
+        font-size: $--font-body-4;
+      }
+    }
+  }
+}
+
+@include large-screens {
+  .tractive-video {
+    .video-container { 
+      width: 90vw;
+  
+      .video-controls { bottom: 15px; }
+      .time-waves { bottom: 5px; }
+    }
+  }
+}

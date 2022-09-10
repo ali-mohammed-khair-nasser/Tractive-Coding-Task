@@ -1,0 +1,42 @@
+# ************************************************************************************************************************************* #
+# NOTE:
+# I always try to automate the deployment task instead of do it manually. 
+# So when I make a PR to the needed branch on git, the deployment starts automatically ;)
+# Here I am using https://surge.sh which is a free static web publishing website for testing developments without need to real hosting.
+# I just need to confirm that I am the user of surge account so I use the surge token to do that.
+# To generate the token I use the command `surge token` in the terminal of the project.
+# ************************************************************************************************************************************* #
+
+name: Deploy to Live Preview
+
+on: 
+  pull_request:
+    types: [ closed ]
+    branches: [ develop ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Installing Dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Build & Generate Project Files
+        run: npm run build && npm run generate
+        
+      - name: Install Surge
+        run: npm install -g surge
+        
+      - name: Deploy to Surge
+        run:  surge ./build https://tractive-video-player.surge.sh/ --token ${{secrets.TRACTIVE_SURGE_TOKEN}}

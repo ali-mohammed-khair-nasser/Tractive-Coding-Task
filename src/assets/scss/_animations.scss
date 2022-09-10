@@ -1,0 +1,11 @@
+@keyframes small-wave-animation {
+  0% { height: 2px; } 100% { height: 20px; }
+}
+
+@keyframes medium-wave-animation {
+  0% { height: 12px; } 100% { height: 50px; }
+}
+
+@keyframes large-wave-animation {
+  0% { height: 15px; } 100% { height: 65px; }
+}

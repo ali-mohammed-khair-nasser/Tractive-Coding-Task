@@ -1,0 +1,15 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/generalClasses';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $--font-primary;
+}
+
+.App {
+  @extend .centering;
+  width: 100vw;
+  height: 100vh;
+}

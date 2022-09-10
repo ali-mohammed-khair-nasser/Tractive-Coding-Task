@@ -1,0 +1,10 @@
+.centering {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin square($--width) {
+  width: $--width;
+  height: $--width;
+}
